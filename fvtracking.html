@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit & Vegetable Tracking Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .notes {
+            width: 100%;
+            height: 50px;
+        }
+        .save-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .save-btn:hover {
+            background-color: #45a049;
+        }
+        .summary {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3e7;
+            border: 1px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>7-Day Fruit & Vegetable Tracking Challenge</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Fruits</th>
+                <th>Vegetables</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Monday</td>
+                <td><input type="checkbox" class="fruit"></td>
+                <td><input type="checkbox" class="vegetable"></td>
+                <td><textarea class="notes"></textarea></td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td><input type="checkbox" class="fruit"></td>
+                <td><input type="checkbox" class="vegetable"></td>
+                <td><textarea class="notes"></textarea></td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td><input type="checkbox" class="fruit"></td>
+                <td><input type="checkbox" class="vegetable"></td>
+                <td><textarea class="notes"></textarea></td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td><input type="checkbox" class="fruit"></td>
+                <td><input type="checkbox" class="vegetable"></td>
+                <td><textarea class="notes"></textarea></td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td><input type="checkbox" class="fruit"></td>
+                <td><input type="checkbox" class="vegetable"></td>
+                <td><textarea class="notes"></textarea></td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td><input type="checkbox" class="fruit"></td>
+                <td><input type="checkbox" class="vegetable"></td>
+                <td><textarea class="notes"></textarea></td>
+            </tr>
+            <tr>
+                <td>Sunday</td>
+                <td><input type="checkbox" class="fruit"></td>
+                <td><input type="checkbox" class="vegetable"></td>
+                <td><textarea class="notes"></textarea></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="save-btn" onclick="saveProgress()">Save Progress</button>
+    <div class="summary">
+        <h2>Progress Summary</h2>
+        <p id="fruit-summary">Fruits: 0/7 (0%)</p>
+        <p id="vegetable-summary">Vegetables: 0/7 (0%)</p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            loadProgress();
+            updateSummary();
+        });
+
+        function saveProgress() {
+            const fruits = document.querySelectorAll('.fruit');
+            const vegetables = document.querySelectorAll('.vegetable');
+            const notes = document.querySelectorAll('.notes');
+
+            const fruitProgress = [];
+            const vegetableProgress = [];
+            const notesProgress = [];
+
+            fruits.forEach((fruit, index) => {
+                fruitProgress[index] = fruit.checked;
+            });
+
+            vegetables.forEach((vegetable, index) => {
+                vegetableProgress[index] = vegetable.checked;
+            });
+
+            notes.forEach((note, index) => {
+                notesProgress[index] = note.value;
+            });
+
+            localStorage.setItem('fruitProgress', JSON.stringify(fruitProgress));
+            localStorage.setItem('vegetableProgress', JSON.stringify(vegetableProgress));
+            localStorage.setItem('notesProgress', JSON.stringify(notesProgress));
+
+            updateSummary();
+        }
+
+        function loadProgress() {
+            const fruitProgress = JSON.parse(localStorage.getItem('fruitProgress')) || [];
+            const vegetableProgress = JSON.parse(localStorage.getItem('vegetableProgress')) || [];
+            const notesProgress = JSON.parse(localStorage.getItem('notesProgress')) || [];
+
+            const fruits = document.querySelectorAll('.fruit');
+            const vegetables = document.querySelectorAll('.vegetable');
+            const notes = document.querySelectorAll('.notes');
+
+            fruits.forEach((fruit, index) => {
+                fruit.checked = fruitProgress[index] || false;
+            });
+
+            vegetables.forEach((vegetable, index) => {
+                vegetable.checked = vegetableProgress[index] || false;
+            });
+
+            notes.forEach((note, index) => {
+                note.value = notesProgress[index] || '';
+            });
+        }
+
+        function updateSummary() {
+            const fruits = document.querySelectorAll('.fruit');
+            const vegetables = document.querySelectorAll('.vegetable');
+
+            let fruitCount = 0;
+            let vegetableCount = 0;
+
+            fruits.forEach(fruit => {
+                if (fruit.checked) {
+                    fruitCount++;
+                }
+            });
+
+            vegetables.forEach(vegetable => {
+                if (vegetable.checked) {
+                    vegetableCount++;
+                }
+            });
+
+            const fruitPercentage = (fruitCount / 7) * 100;
+            const vegetablePercentage = (vegetableCount / 7) * 100;
+
+            document.getElementById('fruit-summary').innerText = `Fruits: ${fruitCount}/7 (${fruitPercentage.toFixed(2)}%)`;
+            document.getElementById('vegetable-summary').innerText = `Vegetables: ${vegetableCount}/7 (${vegetablePercentage.toFixed(2)}%)`;
+        }
+    </script>
+</body>
+</html>
