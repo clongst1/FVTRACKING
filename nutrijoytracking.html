@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriJoy - Fruit & Vegetable Tracking Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #4CAF50;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        main {
+            padding: 1rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 0.5rem;
+            text-align: center;
+        }
+        th {
+            background: #4CAF50;
+            color: #fff;
+        }
+        .progress-summary {
+            margin-top: 1rem;
+        }
+        .qr-code {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .qr-code img {
+            max-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to NutriJoy!</h1>
+        <p>Your 7-Day Fruit & Vegetable Tracking Challenge</p>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Track Your Progress</h2>
+            <table aria-label="Fruit and Vegetable Tracking Table">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Fruits</th>
+                        <th>Vegetables</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monday</td>
+                        <td><input type="checkbox" aria-label="Fruits Monday"></td>
+                        <td><input type="checkbox" aria-label="Vegetables Monday"></td>
+                        <td><textarea aria-label="Notes Monday"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Tuesday</td>
+                        <td><input type="checkbox" aria-label="Fruits Tuesday"></td>
+                        <td><input type="checkbox" aria-label="Vegetables Tuesday"></td>
+                        <td><textarea aria-label="Notes Tuesday"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday</td>
+                        <td><input type="checkbox" aria-label="Fruits Wednesday"></td>
+                        <td><input type="checkbox" aria-label="Vegetables Wednesday"></td>
+                        <td><textarea aria-label="Notes Wednesday"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Thursday</td>
+                        <td><input type="checkbox" aria-label="Fruits Thursday"></td>
+                        <td><input type="checkbox" aria-label="Vegetables Thursday"></td>
+                        <td><textarea aria-label="Notes Thursday"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Friday</td>
+                        <td><input type="checkbox" aria-label="Fruits Friday"></td>
+                        <td><input type="checkbox" aria-label="Vegetables Friday"></td>
+                        <td><textarea aria-label="Notes Friday"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Saturday</td>
+                        <td><input type="checkbox" aria-label="Fruits Saturday"></td>
+                        <td><input type="checkbox" aria-label="Vegetables Saturday"></td>
+                        <td><textarea aria-label="Notes Saturday"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Sunday</td>
+                        <td><input type="checkbox" aria-label="Fruits Sunday"></td>
+                        <td><input type="checkbox" aria-label="Vegetables Sunday"></td>
+                        <td><textarea aria-label="Notes Sunday"></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="progress-summary" aria-live="polite">
+                <h2>Progress Summary</h2>
+                <p>Fruits: <span id="fruit-progress">0</span>/7 days</p>
+                <p>Vegetables: <span id="veg-progress">0</span>/7 days</p>
+            </div>
+            <div class="qr-code">
+                <h2>Access the Tracker Online</h2>
+                <img src="https://clongst1.github.io/fvtracking/" alt="QR code linking to GitHub Pages site">
+            </div>
+        </div>
+    </main>
+</body>
+</html>
